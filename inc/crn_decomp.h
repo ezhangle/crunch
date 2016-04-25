@@ -374,7 +374,7 @@ namespace crnd
 
    const uint32 cIntBits = 32U;
 
-#ifdef _WIN64
+#if defined(_WIN64) || defined(__LP64__)
    typedef uint64 ptr_bits;
 #else
    typedef uint32 ptr_bits;
@@ -2526,7 +2526,7 @@ namespace crnd
          return NULL;
       }
 
-      CRND_ASSERT(((uint32)p_new & (CRND_MIN_ALLOC_ALIGNMENT - 1)) == 0);
+      CRND_ASSERT(((ptr_bits)p_new & (CRND_MIN_ALLOC_ALIGNMENT - 1)) == 0);
 
       return p_new;
    }
@@ -2551,7 +2551,7 @@ namespace crnd
       if (pActual_size)
          *pActual_size = actual_size;
 
-      CRND_ASSERT(((uint32)p_new & (CRND_MIN_ALLOC_ALIGNMENT - 1)) == 0);
+      CRND_ASSERT(((ptr_bits)p_new & (CRND_MIN_ALLOC_ALIGNMENT - 1)) == 0);
 
       return p_new;
    }
